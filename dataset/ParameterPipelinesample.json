@@ -20,9 +20,7 @@
 		"type": "DelimitedText",
 		"typeProperties": {
 			"location": {
-				"type": "AzureBlobFSLocation",
-				"folderPath": "input",
-				"fileSystem": "project"
+				"type": "AzureBlobFSLocation"
 			},
 			"columnDelimiter": "\t",
 			"escapeChar": "\\",
