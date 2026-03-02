@@ -1,0 +1,9 @@
+{
+	"name": "projvishal0203",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "2bfe1350-9d84-443d-af93-032e3c4d710b",
+		"tenantId": "6d29af58-05c1-4886-ac77-f023d5d36df4"
+	}
+}
