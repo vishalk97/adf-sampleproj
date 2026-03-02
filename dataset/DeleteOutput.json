@@ -1,0 +1,19 @@
+{
+	"name": "DeleteOutput",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "SalesLTCustomer.txt",
+				"folderPath": "output",
+				"fileSystem": "project"
+			}
+		}
+	}
+}
