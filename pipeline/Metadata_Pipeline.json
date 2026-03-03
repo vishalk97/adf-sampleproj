@@ -52,6 +52,8 @@
 						{
 							"name": "Set variable1",
 							"type": "SetVariable",
+							"state": "Inactive",
+							"onInactiveMarkAs": "Succeeded",
 							"dependsOn": [],
 							"policy": {
 								"secureOutput": false,
@@ -63,6 +65,32 @@
 								"value": {
 									"value": "@item().name",
 									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "Execute Pipeline to call 1 pipeline from another",
+							"type": "ExecutePipeline",
+							"dependsOn": [],
+							"policy": {
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"pipeline": {
+									"referenceName": "Parameterized_Pipeline",
+									"type": "PipelineReference"
+								},
+								"waitOnCompletion": true,
+								"parameters": {
+									"pp_filesystem": "project",
+									"pp_directory_in": "input",
+									"pp_filename": {
+										"value": "@item().name",
+										"type": "Expression"
+									},
+									"pp_directory_out": "output",
+									"pp_directory_arch": "archive"
 								}
 							}
 						}
