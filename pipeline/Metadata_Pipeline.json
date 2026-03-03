@@ -16,18 +16,11 @@
 				"userProperties": [],
 				"typeProperties": {
 					"dataset": {
-						"referenceName": "MetadataPL_ds",
+						"referenceName": "MetadataPL_dataset",
 						"type": "DatasetReference"
 					},
 					"fieldList": [
-						"columnCount",
-						"contentMD5",
-						"exists",
-						"itemName",
-						"itemType",
-						"lastModified",
-						"size",
-						"structure"
+						"childItems"
 					],
 					"storeSettings": {
 						"type": "AzureBlobFSReadSettings",
