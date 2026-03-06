@@ -9,8 +9,8 @@
 		"type": "AzureSqlTable",
 		"schema": [],
 		"typeProperties": {
-			"schema": "SalesLT",
-			"table": "NEWProductCategoryUPDATED"
+			"schema": "project",
+			"table": "config"
 		}
 	}
 }
