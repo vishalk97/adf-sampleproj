@@ -17,18 +17,16 @@
 				"typeProperties": {
 					"source": {
 						"type": "DelimitedTextSource",
-						"additionalColumns": [
-							{
-								"value": "$$FILEPATH"
-							}
-						],
 						"storeSettings": {
 							"type": "AzureBlobFSReadSettings",
 							"recursive": true,
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
-							"type": "DelimitedTextReadSettings"
+							"type": "DelimitedTextReadSettings",
+							"compressionProperties": {
+								"type": "ZipDeflateReadSettings"
+							}
 						}
 					},
 					"sink": {
@@ -60,7 +58,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "Extract_File_in_Folder",
+						"referenceName": "Extract_ZIP_File",
 						"type": "DatasetReference"
 					}
 				]
