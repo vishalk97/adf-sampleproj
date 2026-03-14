@@ -53,13 +53,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "Extract_ZIP_File",
+						"referenceName": "Extract_ZIP_Source",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "Extract_ZIP_File",
+						"referenceName": "Extract_ZIP_Sink",
 						"type": "DatasetReference"
 					}
 				]
