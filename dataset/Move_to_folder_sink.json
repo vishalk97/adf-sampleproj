@@ -10,7 +10,6 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "@item().name",
 				"folderPath": "source/sales",
 				"fileSystem": "adfpocproject"
 			},
