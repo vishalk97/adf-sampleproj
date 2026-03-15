@@ -181,7 +181,13 @@
 										"outputs": [
 											{
 												"referenceName": "move_file_sink",
-												"type": "DatasetReference"
+												"type": "DatasetReference",
+												"parameters": {
+													"fileName": {
+														"value": "@item().name",
+														"type": "Expression"
+													}
+												}
 											}
 										]
 									}
