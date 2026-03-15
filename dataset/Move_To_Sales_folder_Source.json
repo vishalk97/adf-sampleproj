@@ -13,10 +13,6 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": {
-					"value": "item().name",
-					"type": "Expression"
-				},
 				"folderPath": "source/extract/AdventureWorksLTDEPOC.zip/AdventureWorksLTDEPOC",
 				"fileSystem": "adfpocproject"
 			},
