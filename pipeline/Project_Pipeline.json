@@ -115,13 +115,46 @@
 					},
 					"activities": [
 						{
-							"name": "IF_check_file_name_exists",
+							"name": "Copy data1",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "DelimitedTextSource",
+									"storeSettings": {
+										"type": "AzureBlobFSReadSettings",
+										"recursive": true,
+										"enablePartitionDiscovery": false
+									},
+									"formatSettings": {
+										"type": "DelimitedTextReadSettings"
+									}
+								},
+								"enableStaging": false
+							},
+							"inputs": [
+								{
+									"referenceName": "Move_to_folder",
+									"type": "DatasetReference"
+								}
+							]
+						},
+						{
+							"name": "Check_IF_Condition",
 							"type": "IfCondition",
 							"dependsOn": [],
 							"userProperties": [],
 							"typeProperties": {
 								"expression": {
-									"value": "@activity('Get Metadata1').output",
+									"value": "@and(startswith(item().name,'SalesLT'),endswith(item(),'.txt'))",
 									"type": "Expression"
 								}
 							}
