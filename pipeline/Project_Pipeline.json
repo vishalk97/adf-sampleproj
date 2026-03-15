@@ -112,7 +112,21 @@
 					"items": {
 						"value": "@activity('Get Metadata1').output.itemName",
 						"type": "Expression"
-					}
+					},
+					"activities": [
+						{
+							"name": "IF_check_file_name_exists",
+							"type": "IfCondition",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"expression": {
+									"value": "@activity('Get Metadata1').output",
+									"type": "Expression"
+								}
+							}
+						}
+					]
 				}
 			}
 		],
