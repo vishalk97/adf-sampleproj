@@ -124,6 +124,78 @@
 									"value": "@and(startswith(item().name,'SalesLT'),endswith(item().name,\n'.txt'))",
 									"type": "Expression"
 								},
+								"ifFalseActivities": [
+									{
+										"name": "copy_file_others",
+										"type": "Copy",
+										"dependsOn": [],
+										"policy": {
+											"timeout": "0.12:00:00",
+											"retry": 0,
+											"retryIntervalInSeconds": 30,
+											"secureOutput": false,
+											"secureInput": false
+										},
+										"userProperties": [],
+										"typeProperties": {
+											"source": {
+												"type": "DelimitedTextSource",
+												"storeSettings": {
+													"type": "AzureBlobFSReadSettings",
+													"recursive": true,
+													"enablePartitionDiscovery": false
+												},
+												"formatSettings": {
+													"type": "DelimitedTextReadSettings"
+												}
+											},
+											"sink": {
+												"type": "DelimitedTextSink",
+												"storeSettings": {
+													"type": "AzureBlobFSWriteSettings"
+												},
+												"formatSettings": {
+													"type": "DelimitedTextWriteSettings",
+													"quoteAllText": true,
+													"fileExtension": ".txt"
+												}
+											},
+											"enableStaging": false,
+											"translator": {
+												"type": "TabularTranslator",
+												"typeConversion": true,
+												"typeConversionSettings": {
+													"allowDataTruncation": true,
+													"treatBooleanAsNumber": false
+												}
+											}
+										},
+										"inputs": [
+											{
+												"referenceName": "move_file_source",
+												"type": "DatasetReference",
+												"parameters": {
+													"fileName": {
+														"value": "@item().name",
+														"type": "Expression"
+													}
+												}
+											}
+										],
+										"outputs": [
+											{
+												"referenceName": "move_file_others_sink",
+												"type": "DatasetReference",
+												"parameters": {
+													"fileName": {
+														"value": "@item().name",
+														"type": "Expression"
+													}
+												}
+											}
+										]
+									}
+								],
 								"ifTrueActivities": [
 									{
 										"name": "copy_file_source",
@@ -172,7 +244,7 @@
 										},
 										"inputs": [
 											{
-												"referenceName": "file_move_source",
+												"referenceName": "move_file_source",
 												"type": "DatasetReference",
 												"parameters": {
 													"fileName": {
