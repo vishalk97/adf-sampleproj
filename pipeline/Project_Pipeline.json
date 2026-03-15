@@ -173,7 +173,13 @@
 										"inputs": [
 											{
 												"referenceName": "file_move_source",
-												"type": "DatasetReference"
+												"type": "DatasetReference",
+												"parameters": {
+													"fileName": {
+														"value": "@item().name",
+														"type": "Expression"
+													}
+												}
 											}
 										],
 										"outputs": [
