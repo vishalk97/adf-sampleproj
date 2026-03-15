@@ -1,5 +1,5 @@
 {
-	"name": "file_move_source",
+	"name": "move_file_source",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "AzureDataLakeStorage1",
@@ -9,6 +9,9 @@
 			"fileName": {
 				"type": "string"
 			}
+		},
+		"folder": {
+			"name": "Project_Datasets"
 		},
 		"annotations": [],
 		"type": "DelimitedText",
