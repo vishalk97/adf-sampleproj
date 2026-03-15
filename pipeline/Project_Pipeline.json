@@ -97,7 +97,7 @@
 				}
 			},
 			{
-				"name": "Move_Files_Activity2",
+				"name": "For_each_activity",
 				"type": "ForEach",
 				"dependsOn": [
 					{
@@ -115,18 +115,18 @@
 					},
 					"activities": [
 						{
-							"name": "Check_IF_Condition",
+							"name": "IF_to_check_file_name",
 							"type": "IfCondition",
 							"dependsOn": [],
 							"userProperties": [],
 							"typeProperties": {
 								"expression": {
-									"value": "@and(startswith(item().name,'SalesLT'),endswith(item().name,'.txt'))",
+									"value": "@and(startswith(item().name,'SalesLT'),endswith(item().name,'txt'))",
 									"type": "Expression"
 								},
 								"ifTrueActivities": [
 									{
-										"name": "If_True_Copy_to_Sales",
+										"name": "copy_file_source",
 										"type": "Copy",
 										"dependsOn": [],
 										"policy": {
@@ -143,11 +143,6 @@
 												"storeSettings": {
 													"type": "AzureBlobFSReadSettings",
 													"recursive": true,
-													"wildcardFolderPath": "source/extract/AdventureWorksLTDEPOC/AdventureWorksLTDEPOC",
-													"wildcardFileName": {
-														"value": "item().name",
-														"type": "Expression"
-													},
 													"enablePartitionDiscovery": false
 												},
 												"formatSettings": {
@@ -157,8 +152,7 @@
 											"sink": {
 												"type": "DelimitedTextSink",
 												"storeSettings": {
-													"type": "AzureBlobFSWriteSettings",
-													"copyBehavior": "PreserveHierarchy"
+													"type": "AzureBlobFSWriteSettings"
 												},
 												"formatSettings": {
 													"type": "DelimitedTextWriteSettings",
@@ -178,13 +172,13 @@
 										},
 										"inputs": [
 											{
-												"referenceName": "Move_To_Sales_folder_Source",
+												"referenceName": "file_move_source",
 												"type": "DatasetReference"
 											}
 										],
 										"outputs": [
 											{
-												"referenceName": "Move_to_folder_sink",
+												"referenceName": "move_file_sink",
 												"type": "DatasetReference"
 											}
 										]
