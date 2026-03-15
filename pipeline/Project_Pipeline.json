@@ -143,6 +143,8 @@
 												"storeSettings": {
 													"type": "AzureBlobFSReadSettings",
 													"recursive": true,
+													"wildcardFolderPath": "source/extract/AdventureWorksLTDEPOC/AdventureWorksLTDEPOC",
+													"wildcardFileName": "*",
 													"enablePartitionDiscovery": false
 												},
 												"formatSettings": {
