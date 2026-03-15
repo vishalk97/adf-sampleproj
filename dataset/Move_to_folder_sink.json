@@ -1,23 +1,17 @@
 {
-	"name": "Move_To_Sales_folder_Source",
+	"name": "Move_to_folder_sink",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "AzureDataLakeStorage1",
 			"type": "LinkedServiceReference"
-		},
-		"folder": {
-			"name": "Project_Datasets"
 		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": {
-					"value": "item().name",
-					"type": "Expression"
-				},
-				"folderPath": "source/extract/AdventureWorksLTDEPOC.zip/AdventureWorksLTDEPOC",
+				"fileName": "@item().name",
+				"folderPath": "source/sales",
 				"fileSystem": "adfpocproject"
 			},
 			"columnDelimiter": ",",
