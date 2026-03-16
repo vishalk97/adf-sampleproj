@@ -69,7 +69,14 @@
 			{
 				"name": "Get Metadata1",
 				"type": "GetMetadata",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "Activity_1_Extract_ZIP_File",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "0.12:00:00",
 					"retry": 0,
@@ -198,8 +205,8 @@
 										]
 									},
 									{
-										"name": "copy_others_audit_log",
-										"type": "Copy",
+										"name": "Audit_Log_Script",
+										"type": "Script",
 										"dependsOn": [
 											{
 												"activity": "copy_file_others",
@@ -216,78 +223,22 @@
 											"secureInput": false
 										},
 										"userProperties": [],
-										"typeProperties": {
-											"source": {
-												"type": "DelimitedTextSource",
-												"storeSettings": {
-													"type": "AzureBlobFSReadSettings",
-													"recursive": true,
-													"enablePartitionDiscovery": false
-												},
-												"formatSettings": {
-													"type": "DelimitedTextReadSettings",
-													"skipLineCount": 0
-												}
-											},
-											"sink": {
-												"type": "AzureSqlSink",
-												"writeBehavior": "insert",
-												"sqlWriterUseTableLock": false
-											},
-											"enableStaging": false,
-											"translator": {
-												"type": "TabularTranslator",
-												"mappings": [
-													{
-														"source": {
-															"name": "file_name",
-															"type": "String",
-															"physicalType": "String"
-														},
-														"sink": {
-															"name": "file_name",
-															"type": "String",
-															"physicalType": "varchar"
-														}
-													},
-													{
-														"source": {
-															"name": "exec_time",
-															"type": "String",
-															"physicalType": "String"
-														},
-														"sink": {
-															"name": "exec_time",
-															"type": "DateTime",
-															"physicalType": "datetime"
-														}
-													}
-												],
-												"typeConversion": true,
-												"typeConversionSettings": {
-													"allowDataTruncation": true,
-													"treatBooleanAsNumber": false
-												}
-											}
+										"linkedServiceName": {
+											"referenceName": "AzureSqlDatabase1",
+											"type": "LinkedServiceReference"
 										},
-										"inputs": [
-											{
-												"referenceName": "audit_log_source_others",
-												"type": "DatasetReference",
-												"parameters": {
-													"file_name": {
-														"value": "@item().name",
+										"typeProperties": {
+											"scripts": [
+												{
+													"type": "NonQuery",
+													"text": {
+														"value": "@concat(\n    'insert into dbo.audit_log (file_name, exec_time) VALUES (''',item().name,''',GETUTCDATE())'\n)",
 														"type": "Expression"
 													}
 												}
-											}
-										],
-										"outputs": [
-											{
-												"referenceName": "audit_log_dataset_SQL",
-												"type": "DatasetReference"
-											}
-										]
+											],
+											"scriptBlockExecutionTimeout": "02:00:00"
+										}
 									}
 								],
 								"ifTrueActivities": [
