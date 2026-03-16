@@ -1,9 +1,12 @@
 {
-	"name": "audit_log_dataset",
+	"name": "audit_log_dataset_SQL",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "AzureSqlDatabase1",
 			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Project_Datasets"
 		},
 		"annotations": [],
 		"type": "AzureSqlTable",
