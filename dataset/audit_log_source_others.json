@@ -1,0 +1,36 @@
+{
+	"name": "audit_log_source_others",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Project_Datasets"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "audit_temp.csv",
+				"folderPath": "audit",
+				"fileSystem": "adfpocproject"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "file_name",
+				"type": "String"
+			},
+			{
+				"name": "exec_time",
+				"type": "String"
+			}
+		]
+	}
+}
