@@ -311,6 +311,42 @@
 												}
 											}
 										]
+									},
+									{
+										"name": "Audit_Log_Script_True",
+										"type": "Script",
+										"dependsOn": [
+											{
+												"activity": "copy_file_source",
+												"dependencyConditions": [
+													"Succeeded"
+												]
+											}
+										],
+										"policy": {
+											"timeout": "0.12:00:00",
+											"retry": 0,
+											"retryIntervalInSeconds": 30,
+											"secureOutput": false,
+											"secureInput": false
+										},
+										"userProperties": [],
+										"linkedServiceName": {
+											"referenceName": "AzureSqlDatabase1",
+											"type": "LinkedServiceReference"
+										},
+										"typeProperties": {
+											"scripts": [
+												{
+													"type": "NonQuery",
+													"text": {
+														"value": "@concat(\n    'insert into dbo.audit_log (file_name, exec_time) VALUES (''',item().name,''',GETUTCDATE())'\n)",
+														"type": "Expression"
+													}
+												}
+											],
+											"scriptBlockExecutionTimeout": "02:00:00"
+										}
 									}
 								]
 							}
