@@ -22,7 +22,7 @@
 					"value": "@dataset().file_name",
 					"type": "Expression"
 				},
-				"folderPath": "audit",
+				"folderPath": "source/extract/others",
 				"fileSystem": "adfpocproject"
 			},
 			"columnDelimiter": ",",
