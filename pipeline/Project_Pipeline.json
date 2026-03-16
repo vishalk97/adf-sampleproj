@@ -67,7 +67,7 @@
 				]
 			},
 			{
-				"name": "Get Metadata1",
+				"name": "Get_the_File_name",
 				"type": "GetMetadata",
 				"dependsOn": [
 					{
@@ -108,7 +108,7 @@
 				"type": "ForEach",
 				"dependsOn": [
 					{
-						"activity": "Get Metadata1",
+						"activity": "Filter_restricted_Files",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -117,7 +117,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"items": {
-						"value": "@activity('Get Metadata1').output.childItems",
+						"value": "@activity('Filter_restricted_Files').output.value",
 						"type": "Expression"
 					},
 					"activities": [
@@ -352,6 +352,29 @@
 							}
 						}
 					]
+				}
+			},
+			{
+				"name": "Filter_restricted_Files",
+				"type": "Filter",
+				"dependsOn": [
+					{
+						"activity": "Get_the_File_name",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('Get_the_File_name').output.childItems",
+						"type": "Expression"
+					},
+					"condition": {
+						"value": "@not(or(or(endswith(item().name,'.json'),endswith(item().name,'.xml')),endswith(item().name,'.png')))",
+						"type": "Expression"
+					}
 				}
 			}
 		],
