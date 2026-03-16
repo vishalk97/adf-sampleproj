@@ -273,7 +273,13 @@
 										"inputs": [
 											{
 												"referenceName": "audit_log_source_others",
-												"type": "DatasetReference"
+												"type": "DatasetReference",
+												"parameters": {
+													"file_name": {
+														"value": "@item().name",
+														"type": "Expression"
+													}
+												}
 											}
 										],
 										"outputs": [
