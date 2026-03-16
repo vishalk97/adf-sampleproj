@@ -23,6 +23,15 @@
 			"firstRowAsHeader": true,
 			"quoteChar": "\""
 		},
-		"schema": []
+		"schema": [
+			{
+				"name": "file_name",
+				"type": "String"
+			},
+			{
+				"name": "exec_time",
+				"type": "String"
+			}
+		]
 	}
 }
