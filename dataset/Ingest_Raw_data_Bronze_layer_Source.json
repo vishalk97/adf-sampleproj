@@ -5,11 +5,6 @@
 			"referenceName": "AzureDataLakeStorage1",
 			"type": "LinkedServiceReference"
 		},
-		"parameters": {
-			"file_name": {
-				"type": "string"
-			}
-		},
 		"folder": {
 			"name": "Project_Datasets"
 		},
@@ -18,10 +13,6 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": {
-					"value": "@dataset().file_name",
-					"type": "Expression"
-				},
 				"folderPath": "source/extract/sales",
 				"fileSystem": "adfpocproject"
 			},
