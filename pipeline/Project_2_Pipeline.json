@@ -32,7 +32,7 @@
 				}
 			},
 			{
-				"name": "For_looping_Through_Files_In_Sales",
+				"name": "For_looping_through_Files_in_Sales",
 				"type": "ForEach",
 				"dependsOn": [
 					{
@@ -50,8 +50,8 @@
 					},
 					"activities": [
 						{
-							"name": "Ingest Data into Bronze Layer",
-							"type": "Copy",
+							"name": "Data_Flow_Add_To_Bronze",
+							"type": "ExecuteDataFlow",
 							"dependsOn": [],
 							"policy": {
 								"timeout": "0.12:00:00",
@@ -62,164 +62,24 @@
 							},
 							"userProperties": [],
 							"typeProperties": {
-								"source": {
-									"type": "DelimitedTextSource",
-									"storeSettings": {
-										"type": "AzureBlobFSReadSettings",
-										"recursive": true,
-										"wildcardFolderPath": "source/extract/sales",
-										"wildcardFileName": "*",
-										"enablePartitionDiscovery": false
-									},
-									"formatSettings": {
-										"type": "DelimitedTextReadSettings"
-									}
-								},
-								"sink": {
-									"type": "AzureSqlSink",
-									"writeBehavior": "insert",
-									"sqlWriterUseTableLock": false,
-									"tableOption": "autoCreate",
-									"disableMetricsCollection": false
-								},
-								"enableStaging": false,
-								"translator": {
-									"type": "TabularTranslator",
-									"mappings": [
-										{
-											"source": {
-												"name": "AddressID",
-												"type": "String",
-												"physicalType": "String"
-											},
-											"sink": {
-												"name": "AddressID",
-												"type": "String",
-												"physicalType": "nvarchar"
-											}
-										},
-										{
-											"source": {
-												"name": "AddressLine1",
-												"type": "String",
-												"physicalType": "String"
-											},
-											"sink": {
-												"name": "AddressLine1",
-												"type": "String",
-												"physicalType": "nvarchar"
-											}
-										},
-										{
-											"source": {
-												"name": "AddressLine2",
-												"type": "String",
-												"physicalType": "String"
-											},
-											"sink": {
-												"name": "AddressLine2",
-												"type": "String",
-												"physicalType": "nvarchar"
-											}
-										},
-										{
-											"source": {
-												"name": "City",
-												"type": "String",
-												"physicalType": "String"
-											},
-											"sink": {
-												"name": "City",
-												"type": "String",
-												"physicalType": "nvarchar"
-											}
-										},
-										{
-											"source": {
-												"name": "StateProvince",
-												"type": "String",
-												"physicalType": "String"
-											},
-											"sink": {
-												"name": "StateProvince",
-												"type": "String",
-												"physicalType": "nvarchar"
-											}
-										},
-										{
-											"source": {
-												"name": "CountryRegion",
-												"type": "String",
-												"physicalType": "String"
-											},
-											"sink": {
-												"name": "CountryRegion",
-												"type": "String",
-												"physicalType": "nvarchar"
-											}
-										},
-										{
-											"source": {
-												"name": "PostalCode",
-												"type": "String",
-												"physicalType": "String"
-											},
-											"sink": {
-												"name": "PostalCode",
-												"type": "String",
-												"physicalType": "nvarchar"
-											}
-										},
-										{
-											"source": {
-												"name": "rowguid",
-												"type": "String",
-												"physicalType": "String"
-											},
-											"sink": {
-												"name": "rowguid",
-												"type": "String",
-												"physicalType": "nvarchar"
-											}
-										},
-										{
-											"source": {
-												"name": "ModifiedDate",
-												"type": "String",
-												"physicalType": "String"
-											},
-											"sink": {
-												"name": "ModifiedDate",
-												"type": "String",
-												"physicalType": "nvarchar"
+								"dataflow": {
+									"referenceName": "Data_Flow_Source",
+									"type": "DataFlowReference",
+									"datasetParameters": {
+										"bronzesalessource1": {
+											"file_name": {
+												"value": "@item().name",
+												"type": "Expression"
 											}
 										}
-									],
-									"typeConversion": true,
-									"typeConversionSettings": {
-										"allowDataTruncation": true,
-										"treatBooleanAsNumber": false
 									}
-								}
-							},
-							"inputs": [
-								{
-									"referenceName": "Ingest_Raw_data_Bronze_layer_Source",
-									"type": "DatasetReference"
-								}
-							],
-							"outputs": [
-								{
-									"referenceName": "Azure_SQL_Table_Data_Bronze_Sink",
-									"type": "DatasetReference",
-									"parameters": {
-										"table_name": {
-											"value": "@concat('bronze_',replace(item().name,'.txt',''))",
-											"type": "Expression"
-										}
-									}
-								}
-							]
+								},
+								"compute": {
+									"coreCount": 8,
+									"computeType": "General"
+								},
+								"traceLevel": "Fine"
+							}
 						}
 					]
 				}
