@@ -24,6 +24,7 @@
 					],
 					"storeSettings": {
 						"type": "AzureBlobFSReadSettings",
+						"recursive": true,
 						"enablePartitionDiscovery": false
 					},
 					"formatSettings": {
@@ -50,8 +51,8 @@
 					},
 					"activities": [
 						{
-							"name": "Data_Flow_Add_To_Bronze",
-							"type": "ExecuteDataFlow",
+							"name": "Loop_Through_File",
+							"type": "DatabricksNotebook",
 							"dependsOn": [],
 							"policy": {
 								"timeout": "0.12:00:00",
@@ -62,23 +63,11 @@
 							},
 							"userProperties": [],
 							"typeProperties": {
-								"dataflow": {
-									"referenceName": "Data_Flow_Source",
-									"type": "DataFlowReference",
-									"datasetParameters": {
-										"bronzesalessource1": {
-											"file_name": {
-												"value": "@item().name",
-												"type": "Expression"
-											}
-										}
-									}
-								},
-								"compute": {
-									"coreCount": 8,
-									"computeType": "General"
-								},
-								"traceLevel": "Fine"
+								"notebookPath": "/Users/vishalkrishnan97@live.com/Vk Project #2 notebook"
+							},
+							"linkedServiceName": {
+								"referenceName": "vk_databricks_linkedservice",
+								"type": "LinkedServiceReference"
 							}
 						}
 					]
