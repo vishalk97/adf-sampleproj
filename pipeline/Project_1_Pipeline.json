@@ -1,5 +1,5 @@
 {
-	"name": "Project_Pipeline",
+	"name": "Project_1_Pipeline",
 	"properties": {
 		"activities": [
 			{
@@ -378,6 +378,9 @@
 				}
 			}
 		],
+		"folder": {
+			"name": "Project Pipelines"
+		},
 		"annotations": []
 	}
 }
