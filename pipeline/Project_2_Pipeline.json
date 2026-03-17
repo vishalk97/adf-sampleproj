@@ -20,6 +20,7 @@
 						"storeSettings": {
 							"type": "AzureBlobFSReadSettings",
 							"recursive": true,
+							"wildcardFolderPath": "source/extract/sales",
 							"wildcardFileName": "*",
 							"enablePartitionDiscovery": false
 						},
