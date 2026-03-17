@@ -85,6 +85,116 @@
 								"enableStaging": false,
 								"translator": {
 									"type": "TabularTranslator",
+									"mappings": [
+										{
+											"source": {
+												"name": "AddressID",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "AddressID",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										},
+										{
+											"source": {
+												"name": "AddressLine1",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "AddressLine1",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										},
+										{
+											"source": {
+												"name": "AddressLine2",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "AddressLine2",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										},
+										{
+											"source": {
+												"name": "City",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "City",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										},
+										{
+											"source": {
+												"name": "StateProvince",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "StateProvince",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										},
+										{
+											"source": {
+												"name": "CountryRegion",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "CountryRegion",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										},
+										{
+											"source": {
+												"name": "PostalCode",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "PostalCode",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										},
+										{
+											"source": {
+												"name": "rowguid",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "rowguid",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										},
+										{
+											"source": {
+												"name": "ModifiedDate",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "ModifiedDate",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										}
+									],
 									"typeConversion": true,
 									"typeConversionSettings": {
 										"allowDataTruncation": true,
