@@ -63,7 +63,13 @@
 							},
 							"userProperties": [],
 							"typeProperties": {
-								"notebookPath": "/Users/vishalkrishnan97@live.com/Vk Project #2 notebook"
+								"notebookPath": "/Users/vishalkrishnan97@live.com/Vk Project #2 notebook",
+								"baseParameters": {
+									"file_name": {
+										"value": "@item().name",
+										"type": "Expression"
+									}
+								}
 							},
 							"linkedServiceName": {
 								"referenceName": "vk_databricks_linkedservice",
