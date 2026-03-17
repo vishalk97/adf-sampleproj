@@ -52,8 +52,6 @@
 						{
 							"name": "Ingest Data into Bronze Layer",
 							"type": "Copy",
-							"state": "Inactive",
-							"onInactiveMarkAs": "Succeeded",
 							"dependsOn": [],
 							"policy": {
 								"timeout": "0.12:00:00",
@@ -103,7 +101,13 @@
 							"outputs": [
 								{
 									"referenceName": "Azure_SQL_Table_Data_Bronze_Sink",
-									"type": "DatasetReference"
+									"type": "DatasetReference",
+									"parameters": {
+										"table_name": {
+											"value": "@concat('bronze_',replace(item().name,'.txt',''))",
+											"type": "Expression"
+										}
+									}
 								}
 							]
 						}
